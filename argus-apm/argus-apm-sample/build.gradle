@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 
-apply from: 'argusapm.gradle'
+//apply from: 'argusapm.gradle'
 
 android {
     useLibrary 'org.apache.http.legacy'
@@ -37,4 +37,5 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.squareup.okhttp3:okhttp:3.10.0'
+    compile project(':argus-apm-main')
 }
