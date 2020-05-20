@@ -7,12 +7,12 @@ ext {
 }
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 27
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         consumerProguardFiles 'argus-apm-okhttp.pro'
@@ -41,12 +41,14 @@ dependencies {
     provided 'com.squareup.okhttp3:okhttp:3.7.0'
     provided 'com.squareup.okio:okio:1.12.0'
 
-    if (ArgusAPM_Release) {
-        provided project(':argus-apm-main')
-    } else {
-        releaseProvided project(path: ':argus-apm-main', configuration: 'release')
-        debugProvided project(path: ':argus-apm-main', configuration: 'debug')
-    }
+    provided project(':argus-apm-main')
+
+//    if (ArgusAPM_Release) {
+//        provided project(':argus-apm-main')
+//    } else {
+//        releaseProvided project(path: ':argus-apm-main', configuration: 'release')
+//        debugProvided project(path: ':argus-apm-main', configuration: 'debug')
+//    }
 }
 
 //-----------------------------------以下为通过ajc编译AspectJ相关的代码-----------------------------------------------

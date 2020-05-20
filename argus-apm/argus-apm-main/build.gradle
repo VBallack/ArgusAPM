@@ -2,8 +2,8 @@ apply plugin: 'com.android.library'
 apply from: "sdk_utils.gradle"
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
 
     if (!ArgusAPM_Release) {
         publishNonDefault true
@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         minSdkVersion 10
-        targetSdkVersion 27
+        targetSdkVersion 29
 
         // 改参数一般用来调试数据库，数据库生成在sdcard方便调试
         buildConfigField "boolean", "DB_IN_SDCARD", "false"
@@ -29,7 +29,7 @@ android {
         debug {
             minifyEnabled false
             zipAlignEnabled false
-            shrinkResources false
+//            shrinkResources false
             consumerProguardFiles 'argus-apm-main.pro'
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'argus-apm-main.pro'
         }
@@ -37,7 +37,7 @@ android {
         release {
             minifyEnabled true
             zipAlignEnabled true
-            shrinkResources true
+//            shrinkResources true
             consumerProguardFiles 'argus-apm-main.pro'
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'argus-apm-main.pro'
         }
@@ -59,11 +59,13 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     provided 'org.aspectj:aspectjrt:1.8.9'
     provided 'org.aspectj:aspectjtools:1.8.9'
+
+    compile project(':argus-apm-cloud-dummy-impl')
     //下面的两行是方便在Debug调试时使用，发布Release包时需要将下面的两行注释掉，并执行copyNewDependentLibs任务
-    if (!ArgusAPM_Release) {
-        releaseCompile project(path: ':argus-apm-cloud-dummy-impl', configuration: 'release')
-        debugCompile project(path: ':argus-apm-cloud-dummy-impl', configuration: 'debug')
-    }
+//    if (!ArgusAPM_Release) {
+//        releaseCompile project(path: ':argus-apm-cloud-dummy-impl', configuration: 'release')
+//        debugCompile project(path: ':argus-apm-cloud-dummy-impl', configuration: 'debug')
+//    }
 }
 
 apply from: "bintray.gradle"

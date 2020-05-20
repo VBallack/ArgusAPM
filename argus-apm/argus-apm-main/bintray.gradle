@@ -2,24 +2,29 @@ apply from: "sdk_utils.gradle"
 
 String apmRootDir = projectDir.toString() + "/apm_sdk_output-" + getDirSuffix() + "/"
 
-task deleteOldDependentLibs << {
-    delete(projectDir.toString() + '/libs/argus-apm-cloud.jar')
-    delete(projectDir.toString() + '/libs/argus-apm-cloud-impl.jar')
+task deleteOldDependentLibs {
+    doLast {
+        delete(projectDir.toString() + '/libs/argus-apm-cloud.jar')
+        delete(projectDir.toString() + '/libs/argus-apm-cloud-impl.jar')
+    }
 }
+
 
 /**
  * 拷贝argus-apm-cloud、argus-apm-cloud-impl的jar包到argus-apm-main下面的libs文件夹下
  * （因为采用工程依赖，生成的AAR是不包含所依赖的工程的class文件的）
  */
-task copyNewDependentLibs << {
-    copy {
-        from('../argus-apm-cloud/build/outputs/jar/argus-apm-cloud.jar')
-        into(projectDir.toString() + '/libs')
-    }
+task copyNewDependentLibs {
+    doLast {
+        copy {
+            from('../argus-apm-cloud/build/outputs/jar/argus-apm-cloud.jar')
+            into(projectDir.toString() + '/libs')
+        }
 
-    copy {
-        from('../argus-apm-cloud-dummy-impl/build/outputs/jar/argus-apm-cloud-dummy-impl.jar')
-        into(projectDir.toString() + '/libs')
+        copy {
+            from('../argus-apm-cloud-dummy-impl/build/outputs/jar/argus-apm-cloud-dummy-impl.jar')
+            into(projectDir.toString() + '/libs')
+        }
     }
 }
 
@@ -48,18 +53,20 @@ task buildArgusApmCloudImplJar(type: Jar) {
     include('**/*.class')
 }
 
-task copyArgusApmSdkAndMapping << {
-    copy {
-        from(projectDir.toString() + '/build/outputs/aar/argus-apm-main-release.aar')
-        into(apmRootDir)
-        rename {
-            "argus-apm-" + getDirSuffix() + ".aar"
+task copyArgusApmSdkAndMapping {
+    doLast {
+        copy {
+            from(projectDir.toString() + '/build/outputs/aar/argus-apm-main-release.aar')
+            into(apmRootDir)
+            rename {
+                "argus-apm-" + getDirSuffix() + ".aar"
+            }
         }
-    }
 
-    copy {
-        from projectDir.toString() + "/build/outputs/mapping/release/mapping.txt"
-        into apmRootDir
+        copy {
+            from projectDir.toString() + "/build/outputs/mapping/release/mapping.txt"
+            into apmRootDir
+        }
     }
 }
 
@@ -86,8 +93,10 @@ uploadArchives {
 }
 
 
-task publishToJcenter << {
+task publishToJcenter {
+    doLast {
 
+    }
 }
 
 publishToJcenter.dependsOn(copyArgusApmSdkAndMapping)
