@@ -23,7 +23,7 @@ public class ApmInstrumentation extends Instrumentation {
     private Instrumentation mOldInstrumentation = null;
 
     public ApmInstrumentation(Instrumentation oldInstrumentation) {
-        if (oldInstrumentation instanceof Instrumentation) {
+        if (oldInstrumentation != null) {
             mOldInstrumentation = oldInstrumentation;
         }
     }
