@@ -1,6 +1,6 @@
 ext {
     // debug版带日志
-    APMSDK_DEBUG = false
+    APMSDK_DEBUG = true
     APMSDK_VERSION = "2.0.1"
     APMSDK_BUILD = "1006"
 

@@ -10,7 +10,7 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 10
+        minSdkVersion 16
         targetSdkVersion 29
 
         // 改参数一般用来调试数据库，数据库生成在sdcard方便调试
