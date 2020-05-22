@@ -94,6 +94,7 @@ public class DbHelper extends SQLiteOpenHelper {
                     onCreate(mDb);
                 } else {
                     mDb = getWritableDatabase();
+                    mDb.disableWriteAheadLogging();
                 }
             } catch (Exception e) {
                 if (Env.DEBUG) {
