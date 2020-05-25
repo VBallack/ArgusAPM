@@ -5,9 +5,9 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
-    if (!ArgusAPM_Release) {
-        publishNonDefault true
-    }
+//    if (!ArgusAPM_Release) {
+//        publishNonDefault true
+//    }
 
     defaultConfig {
         minSdkVersion 16
@@ -56,11 +56,11 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    provided 'org.aspectj:aspectjrt:1.8.9'
-    provided 'org.aspectj:aspectjtools:1.8.9'
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    compileOnly 'org.aspectj:aspectjrt:1.8.9'
+    compileOnly 'org.aspectj:aspectjtools:1.8.9'
 
-    compile project(':argus-apm-cloud-dummy-impl')
+    api project(':argus-apm-cloud-dummy-impl')
     //下面的两行是方便在Debug调试时使用，发布Release包时需要将下面的两行注释掉，并执行copyNewDependentLibs任务
 //    if (!ArgusAPM_Release) {
 //        releaseCompile project(path: ':argus-apm-cloud-dummy-impl', configuration: 'release')

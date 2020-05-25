@@ -35,7 +35,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.squareup.okhttp3:okhttp:3.10.0'
-    compile project(':argus-apm-main')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation project(':argus-apm-main')
 }

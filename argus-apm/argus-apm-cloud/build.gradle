@@ -4,9 +4,9 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
-    if (!ArgusAPM_Release) {
-        publishNonDefault true
-    }
+//    if (!ArgusAPM_Release) {
+//        publishNonDefault true
+//    }
 
     defaultConfig {
         minSdkVersion 16

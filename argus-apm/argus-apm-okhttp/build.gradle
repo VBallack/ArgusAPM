@@ -33,15 +33,15 @@ afterEvaluate {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    api fileTree(dir: 'libs', include: ['*.jar'])
 
-    provided "org.aspectj:aspectjrt:1.8.9"
-    provided "org.aspectj:aspectjtools:1.8.9"
+    compileOnly "org.aspectj:aspectjrt:1.8.9"
+    compileOnly "org.aspectj:aspectjtools:1.8.9"
 
-    provided 'com.squareup.okhttp3:okhttp:3.7.0'
-    provided 'com.squareup.okio:okio:1.12.0'
+    compileOnly 'com.squareup.okhttp3:okhttp:3.7.0'
+    compileOnly 'com.squareup.okio:okio:1.12.0'
 
-    provided project(':argus-apm-main')
+    compileOnly project(':argus-apm-main')
 
 //    if (ArgusAPM_Release) {
 //        provided project(':argus-apm-main')
